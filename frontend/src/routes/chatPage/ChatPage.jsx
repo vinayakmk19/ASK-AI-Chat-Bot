@@ -18,6 +18,8 @@ const ChatPage = () => {
   });
 
   console.log(data);
+  console.log(isPending);
+  console.log(error);
 
   return (
     <div className="chatPage">

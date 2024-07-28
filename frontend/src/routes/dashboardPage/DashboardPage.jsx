@@ -25,6 +25,8 @@ const DashboardPage = () => {
     },
   });
 
+  console.log(mutation);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const text = e.target.text.value;
