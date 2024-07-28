@@ -44,7 +44,7 @@ app.get("/api/upload", (req, res) => {
 });
 
 app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
-  console.log(req);
+  // console.log(req);
   console.log(req.auth);
   console.log(req.auth.userId);
   const userId = req.auth.userId;
@@ -95,11 +95,6 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
     console.log(err);
     res.status(500).send("Error creating chat!");
   }
-});
-
-app.use((req, res, next) => {
-  console.log('Request Headers:', req.headers);
-  next();
 });
 
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
@@ -160,8 +155,8 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  console.error(err);
-  console.error(err.name);
+  // console.error(err);
+  // console.error(err.name);
 
 
   if (err.name === 'UnauthenticatedError') {
