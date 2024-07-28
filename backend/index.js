@@ -162,17 +162,17 @@ app.use((err, req, res, next) => {
 
 
   if (err.name === 'UnauthenticatedError') {
-    res.status(401).send("Unauthenticated!");
+    res.status(401).send(" This is Unauthenticated!");
   } else {
     res.status(500).send("Internal Server Error!");
   }
 });
 
 
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(401).send("Unauthenticated!");
-});
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(401).send("Unauthenticated!");
+// });
 
 // PRODUCTION
 app.use(express.static(path.join(__dirname, "../frontend")));
