@@ -94,6 +94,11 @@ app.post("/api/chats", ClerkExpressRequireAuth(), async (req, res) => {
   }
 });
 
+app.use((req, res, next) => {
+  console.log('Request Headers:', req.headers);
+  next();
+});
+
 app.get("/api/userchats", ClerkExpressRequireAuth(), async (req, res) => {
   const userId = req.auth.userId;
 
@@ -149,6 +154,17 @@ app.put("/api/chats/:id", ClerkExpressRequireAuth(), async (req, res) => {
     res.status(500).send("Error adding conversation!");
   }
 });
+
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  if (err.name === 'UnauthenticatedError') {
+    res.status(401).send("Unauthenticated!");
+  } else {
+    res.status(500).send("Internal Server Error!");
+  }
+});
+
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
