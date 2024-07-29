@@ -22,6 +22,8 @@ app.use(
 );
 
 app.use(express.json());
+app.use(compression());
+app.use(helmet());
 
 const connect = async () => {
   try {
