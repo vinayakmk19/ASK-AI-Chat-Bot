@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
+import compression from "compression";
+import helmet from "helmet";
 import url, { fileURLToPath } from "url";
 import ImageKit from "imagekit";
 import mongoose from "mongoose";
