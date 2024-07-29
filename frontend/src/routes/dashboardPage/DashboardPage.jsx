@@ -7,16 +7,35 @@ const DashboardPage = () => {
 
   const navigate = useNavigate();
 
+  // const mutation = useMutation({
+  //   mutationFn: (text) => {
+  //     return fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
+  //       method: "POST",
+  //       credentials: "include",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ text }),
+  //     }).then((res) => res.json());
+  //   },
+  //   onSuccess: (id) => {
+  //     // Invalidate and refetch
+  //     queryClient.invalidateQueries({ queryKey: ["userChats"] });
+  //     navigate(`/dashboard/chats/${id}`);
+  //   },
+  // });
   const mutation = useMutation({
-    mutationFn: (text) => {
-      return fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
+    mutationFn: async (text) => {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chats`, {
         method: "POST",
         credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ text }),
-      }).then((res) => res.json());
+      });
+      const data = await response.json();
+      return data;
     },
     onSuccess: (id) => {
       // Invalidate and refetch
@@ -24,6 +43,7 @@ const DashboardPage = () => {
       navigate(`/dashboard/chats/${id}`);
     },
   });
+  
 
   console.log(mutation);
 
